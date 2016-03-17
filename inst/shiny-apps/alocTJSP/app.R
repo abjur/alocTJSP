@@ -4,6 +4,7 @@ library(leaflet)
 library(dplyr)
 library(stringr)
 library(ggplot2)
+library(rgdal)
 
 #' @export
 matriz <- function(n){
@@ -422,9 +423,16 @@ server <- shinyServer(function(input, output, session) {
       #                  data = filter(d_medio, comarca_foro_distrital_sede != 'SAO PAULO'))
 
     } else {
-      dados() %>%
+      x <- d_medio %>%
+        filter(toupper(comarca_foro_distrital_sede) == comarca_foro_distrital_sede)
+      x %>%
         leaflet() %>%
-        addTiles()
+        addTiles() %>%
+        addCircleMarkers(radius = ~n_processos/ 15,
+                         color = 'black', weight = 1, opacity = 1,
+                         fillOpacity = 0.5,
+                         fillColor = ~colorFactor('Blues', x$regiao)(regiao),
+                         popup = ~comarca_foro_distrital_sede)
     }
   })
 
