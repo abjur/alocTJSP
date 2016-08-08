@@ -94,7 +94,7 @@ mat <- readRDS('matriz.rds')
 mapa <- readRDS('mapa_sp.rds')
 
 ddd <- select(coma, comarca_foro_distrital_sede, n_processos) %>%
-  distinct(comarca_foro_distrital_sede)
+  distinct(comarca_foro_distrital_sede, .keep_all = TRUE)
 
 d_medio <- dd %>%
   select(-n_processos) %>%
@@ -169,7 +169,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(.keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -190,7 +190,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -211,7 +211,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -232,7 +232,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -253,7 +253,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -274,7 +274,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -295,7 +295,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -316,7 +316,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -337,7 +337,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -358,7 +358,7 @@ server <- shinyServer(function(input, output, session) {
         unique()
       vv <- mat %>%
         filter(regiao == r) %>%
-        distinct(coma1) %>%
+        distinct(coma1, .keep_all = TRUE) %>%
         with(coma1)
       d <- mat %>%
         filter(regiao == r) %>%
@@ -393,7 +393,7 @@ server <- shinyServer(function(input, output, session) {
       m <- dados()
 
       d_markers <- d_medio %>%
-        semi_join(distinct(aloc, vara),
+        semi_join(distinct(aloc, vara, .keep_all = TRUE),
                   c('comarca_foro_distrital_sede' = 'vara'))
 
       # m@data <- m@data %>%
